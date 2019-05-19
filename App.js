@@ -6,10 +6,21 @@ import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
+import ReviewScreen from './screens/ReviewScreen';
+import SettingScreen from './screens/SettingsScreen';
+
+const stcknavigator = createStackNavigator({
+  review: { screen: ReviewScreen},
+  setting : { screen: SettingScreen}
+
+})
 
 const  subScreen = createBottomTabNavigator({
   map: { screen: MapScreen },
-  deck: { screen: DeckScreen }
+  deck: { screen: DeckScreen },
+  review: {
+    screen: stcknavigator
+  }
 
 })
 const TabNavigator = createBottomTabNavigator({

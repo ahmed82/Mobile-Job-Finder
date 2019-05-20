@@ -11,7 +11,7 @@ import SettingScreen from './screens/SettingsScreen';
 
 const stcknavigator = createStackNavigator({
   review: { screen: ReviewScreen},
-  setting : { screen: SettingScreen}
+  setting: { screen: SettingScreen}
 
 })
 

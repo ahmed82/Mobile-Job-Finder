@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
@@ -8,7 +8,7 @@ import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
-
+ 
 const stcknavigator = createStackNavigator({
   review: { screen: ReviewScreen},
   settings: { screen: SettingsScreen}
@@ -23,28 +23,29 @@ const  subScreen = createBottomTabNavigator({
   }
 
 })
-const TabNavigator = createBottomTabNavigator({
+const MainNavigator = createBottomTabNavigator({
   welcome: { screen: WelcomeScreen},
   auth: { screen: AuthScreen},
   main: subScreen
    
    
-});
+}); 
 
-  class App extends React.Component {
+ class App extends Component {
   render() {
    
 
     //const tab = createAppContainer(TabNavigator);
     return (
       <View style={styles.container}>
-        <TabNavigator />
+        <Text>Hi From Ahmed Al-Salih</Text>
       </View>
     );
   }
 }
-export default createAppContainer(TabNavigator);
+// export default createAppContainer(TabNavigator);
 
+export default createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   container: {

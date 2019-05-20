@@ -7,6 +7,10 @@ class MapScreen extends Component {
         return(
             <View>
                 <Text>MapScreen</Text>
+                <Text>MapScreen</Text>
+                <Text>MapScreen</Text>
+                <Text>MapScreen</Text>
+                <Text>MapScreen</Text>
             </View>
         );
     }

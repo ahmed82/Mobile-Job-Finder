@@ -7,11 +7,11 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
-import SettingScreen from './screens/SettingsScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const stcknavigator = createStackNavigator({
   review: { screen: ReviewScreen},
-  setting: { screen: SettingScreen}
+  settings: { screen: SettingsScreen}
 
 })
 

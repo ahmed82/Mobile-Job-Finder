@@ -7,6 +7,10 @@ class AuthScreen extends Component {
         return(
             <View>
                 <Text>Auth</Text>
+                <Text>Auth</Text>
+                <Text>Auth</Text>
+                <Text>Auth</Text>
+                <Text>Auth</Text>
             </View>
         );
     }

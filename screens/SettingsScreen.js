@@ -7,6 +7,10 @@ class SettingScreen extends Component {
         return(
             <View>
                 <Text>SettingScreen</Text>
+                <Text>SettingScreen</Text>
+                <Text>SettingScreen</Text>
+                <Text>SettingScreen</Text>
+                <Text>SettingScreen</Text>
             </View>
         );
     }

@@ -7,7 +7,7 @@ class ReviewScreen extends Component {
 
      static navigationOptions = (obj) => { 
          const { navigation } = obj;
-         console.log(JSON.stringify(obj, null, 2));
+        // console.log(JSON.stringify(obj, null, 2));
          return {
         title: 'Review Jobs',
         headerRight:  <Button 

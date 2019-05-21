@@ -1,16 +1,45 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
+    renderSlides(){
+        return this.props.data.map((slide) => {
+            console.log("---------------------------------------"+slide.data)
+            return (
+                <View style={[styles.slideStyle,{backgroundColor:slide.color}]} 
+                      key={slide.text}>
+                    <Text style={styles.textStyle}>{slide.text}</Text>
+                </View>
+            )
+        })
+    }
 
     render() {
         return (
-            <View>
-                <Text>{data}</Text>
-            </View>
+            <ScrollView
+                horizontal
+                style={{flex: 1}}
+                pagingEnabled
+            >
+                {this.renderSlides()}
+            </ScrollView>
         )
     }
 }
+
+const styles = {
+    slideStyle:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SCREEN_WIDTH
+    },
+    textStyle: {
+        fontSize: 30,
+        color: 'white'
+    }
+};
 
 export default Slides;

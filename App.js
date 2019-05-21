@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import { Provider } from 'react-redux';
 
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -43,7 +44,6 @@ const MainNavigator = createBottomTabNavigator({
     );
   }
 }
-// export default createAppContainer(TabNavigator);
 
 export default createAppContainer(MainNavigator);
 

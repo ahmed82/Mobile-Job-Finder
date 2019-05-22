@@ -1,5 +1,5 @@
-import { compineReducers } from 'redux';
+import { combineReducers } from 'redux';
 
-export default compineReducers ({
+export default combineReducers ({
     auth: () => { return {} }
 });

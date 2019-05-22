@@ -10,7 +10,7 @@ import {
 /* export const facebookLogin = () => {
     return function(dispatch) {
         let token = await AsyncStorage.getItem('fb_token');
-        if (toked) {
+        if (token) {
             //Dispath an action : Fb Login is done
         } else {
             // start up FB Login process
@@ -20,7 +20,7 @@ import {
 
 export const facebookLogin = () => async dispatch => {
         let token = await AsyncStorage.getItem('fb_token');
-        if (toked) {
+        if (token) {
             //Dispath an action: Fb Login is done
             dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
         } else {

@@ -33,22 +33,19 @@ const MainNavigator = createBottomTabNavigator({
    
 }); 
 
- class App extends Component {
-  render() {
-   
+const AppContainer = createAppContainer(MainNavigator);
 
-    //const tab = createAppContainer(TabNavigator);
+export default  class App extends Component {
+  render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Text>Hi From Ahmed Al-Salih</Text>
-        </View>
+          < AppContainer />
       </Provider>
     );
   }
 }
 
-export default createAppContainer(MainNavigator);
+ //export default createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   container: {

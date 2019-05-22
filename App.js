@@ -29,11 +29,25 @@ const MainNavigator = createBottomTabNavigator({
   welcome: { screen: WelcomeScreen},
   auth: { screen: AuthScreen},
   main: subScreen
-   
-   
+
 }, {
+    navigationOptions: {
+    /* tabBarVisible: false */
+    header: null
+  },  
   lazyLoad:true
 }); 
+
+MainNavigator.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = false;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 
 const AppContainer = createAppContainer(MainNavigator);
 

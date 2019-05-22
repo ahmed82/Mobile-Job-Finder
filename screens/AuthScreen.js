@@ -7,20 +7,28 @@ import * as actions from '../actions';
 class AuthScreen extends Component {
     componentDidMount() {
         this.props.facebookLogin();
-        AsyncStorage.removeItem('fb_token');
+        // AsyncStorage.removeItem('fb_token'); // To be remove to keep the login token in devise
+        this.onAuthComplete(this.props);
     }
+    componentWillReceiveProps(nextProps){
+        this.onAuthComplete(nextProps);
+    }
+onAuthComplete(props) {
+    if (props.token){
+        this.porops.navigation.navigate("map");
+    }
+}
+
+
     render() {
         return(
-            <View>
-                <Text>Auth</Text>
-                <Text>Auth</Text>
-                <Text>Auth</Text>
-                <Text>Auth</Text>
-                <Text>Auth</Text>
-            </View>
+            <View />
         );
     }
 
 }
+function mapStateToProps({auth}){
+    return { token: auth.token }
+}
 
-export default connect(null,actions)(AuthScreen);
+export default connect(mapStateToProps,actions)(AuthScreen);

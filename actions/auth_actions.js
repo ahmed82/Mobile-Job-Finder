@@ -18,18 +18,18 @@ import {
     }
 }; that section beeing refactor in the next section */
 
-export const facebookLogin = () => dispatch => {
+export const facebookLogin = () => async dispatch => {
         let token = await AsyncStorage.getItem('fb_token');
         if (toked) {
-            //Dispath an action : Fb Login is done
+            //Dispath an action: Fb Login is done
             dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
         } else {
-            // start up FB Login process
+            // Start up FB Login process
             doFacebookLogin(dispatch);
         }
     };
 
-   const doFacebookLogin = async(dispatch) => {
+   const doFacebookLogin = async (dispatch) => {
        let { type, token} = await Facebook.logInWithReadPermissionsAsync('2380414738686574', {
            permissions: ['public_profile']
        });

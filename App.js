@@ -32,13 +32,13 @@ const MainNavigator = createBottomTabNavigator({
 
 }, {
     navigationOptions: {
-    /* tabBarVisible: false */
+    tabBarVisible: false,
     header: null
   },  
   lazyLoad:true
 }); 
 
-MainNavigator.navigationOptions = ({ navigation }) => {
+/* MainNavigator.navigationOptions = ({ navigation }) => {
   let tabBarVisible = false;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -47,7 +47,7 @@ MainNavigator.navigationOptions = ({ navigation }) => {
   return {
     tabBarVisible,
   };
-};
+}; */
 
 const AppContainer = createAppContainer(MainNavigator);
 

@@ -6,7 +6,7 @@ import { MapView } from 'expo';
 class MapScreen extends Component {
     state = {
         mapLoaded: false,
-        initialRegion: {
+        region: {
             latitude: 37.78825,
             longitude: -122.4324,
             latitudeDelta: 0.0922,
@@ -15,6 +15,11 @@ class MapScreen extends Component {
 
     componentDidMount() {
         this.setState({ mapLoaded: true});
+    }
+
+    onRegionChangeComplete = (region)=>{
+        console.log(region);
+        this.setState({region});
     }
     render() {
         if(! this.state.mapLoaded) {
@@ -27,7 +32,8 @@ class MapScreen extends Component {
             <MapView
                 style={{ flex: 1 }}
                 /* initialRegion={{ */
-               Region = {this.state.initialRegion}
+               Region = {this.state.region}
+               onRegionChangeComplete={this.onRegionChangeComplete}
                />
         );
     }

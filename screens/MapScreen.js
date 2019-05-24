@@ -18,13 +18,13 @@ class MapScreen extends Component {
     }
 
     onRegionChangeComplete = (region)=>{
-        console.log(region);
+        // console.log(region);
         this.setState({region});
     }
     render() {
         if(! this.state.mapLoaded) {
             <View style = {{ flex: 1, justifyContent: 'center'}}>
-                <ActivityIndicator size="larg" />
+                <ActivityIndicator size="large" />
             </View>
 
         }

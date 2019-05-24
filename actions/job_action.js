@@ -19,6 +19,7 @@ const JOB_QUERY_PARAMS = {
 
 const buildJobsUrl = (zip) => {
     const query = JSON.stringify({ ...JOB_QUERY_PARAMS, l: zip });
+    console.log(query);
     return `${JOP_ROOT_URL}${query}`;
 }
 

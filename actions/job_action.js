@@ -7,6 +7,7 @@ import {
 
 
 const JOP_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
+
 const JOB_QUERY_PARAMS = {
     publisher: '4201738803816157',
     format: 'json',
@@ -32,12 +33,16 @@ const buildJobsUrl = (zip) => {
     } */
 // OR use 
 export const fetchJobs = (region) => async (dispatch) => {
+   const [latitude,longitude] = region;
+    console.log(region.latitude);
     try {
         let zip = await reverseGeocode(region);
+        console.log(zip);
         const url = buildJobsUrl(zip);
+        console.log(url)
         let { data } = await axios.get(url)
         dispatch({ type: FETCH_JOBS, payload: data })
-        console.log(data);
+        ///console.log(data);
     } catch (e) {
         console.error(e);
     }

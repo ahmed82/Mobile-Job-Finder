@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput , ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect} from 'react-redux';
 import { Button } from 'react-native-elements';
@@ -33,6 +33,7 @@ class MapScreen extends Component {
 
     onRegionChangeComplete = (region) => {
         this.setState({region});
+        console.log(region)
     }
 
     onButtonPress = () => {
@@ -61,6 +62,13 @@ class MapScreen extends Component {
         }
         return(
             <View style={{ flex: 1 }}>
+                <View>
+                    <TextInput
+                        {...this.props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+                        editable = {true}
+                        maxLength = {40}
+                    />
+            </View>
                 <MapView
                     style={{ flex: 1 }}
                     /* initialRegion={{ */

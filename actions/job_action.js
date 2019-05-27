@@ -1,5 +1,7 @@
 import axios from 'axios';
 const reverseGeocode = require('latlng-to-zip');
+const cities = require('cities');
+const qs = require('qs');
 
 import {
     FETCH_JOBS
@@ -19,7 +21,7 @@ const JOB_QUERY_PARAMS = {
 };
 
 const buildJobsUrl = (zip) => {
-    const query = JSON.stringify({ ...JOB_QUERY_PARAMS, l: zip });
+    const query = qs.stringify({ ...JOB_QUERY_PARAMS, l: zip });
     console.log(query);
     return `${JOP_ROOT_URL}${query}`;
 }
@@ -32,9 +34,9 @@ const buildJobsUrl = (zip) => {
         .catch(err => err);
     } */
 // OR use 
-export const fetchJobs = (region) => async (dispatch) => {
+/*  export const fetchJobs = (region) => async (dispatch) => {
    const [latitude,longitude] = region;
-    console.log(region.latitude);
+    console.log(  JSON.stringify(region, null, 2));
     try {
         let zip = await reverseGeocode(region);
         console.log(zip);
@@ -45,5 +47,27 @@ export const fetchJobs = (region) => async (dispatch) => {
         ///console.log(data);
     } catch (e) {
         console.error(e);
+    } 
+}*/
+export const fetchJobs = (region) => async (dispatch) => {
+    
+    try {
+        let cityinfo = await cities.gps_lookup(region.latitude,region.longitude);
+        const url = buildJobsUrl(cityinfo);
+        console.log('--------------------- ',url)
+        let { data } = await axios.get(url)
+        if (data ){
+            dispatch({ type: FETCH_JOBS, payload: data })
+            console.log(data);
+        }
+        
+       // console.log(JSON.stringify(cityinfo, null, 2) );
+      // return  cityinfo.city;
+    } catch(err){
+        console.log(err)
     }
-}
+    
+        
+   
+      
+ }

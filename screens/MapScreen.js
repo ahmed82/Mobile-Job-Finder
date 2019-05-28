@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, TextInput , ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect} from 'react-redux';
-import { Button } from 'react-native-elements';
+import { Button, Input  } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Location } from 'expo';
 
 import * as actions from '../actions';
@@ -10,6 +11,7 @@ import * as actions from '../actions';
 class MapScreen extends Component {
     state = {
         mapLoaded: false,
+        text: 'Useless Placeholder',
         region: {
             latitude: 37.78825,
             longitude: -122.4324,
@@ -62,22 +64,29 @@ class MapScreen extends Component {
         }
         return(
             <View style={{ flex: 1 }}>
-                <View>
-                    <TextInput
-                        {...this.props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-                        editable = {true}
-                        maxLength = {40}
-                    />
-            </View>
+                               
+                
                 <MapView
                     style={{ flex: 1 }}
                     /* initialRegion={{ */
                 Region = {this.state.region}
                 onRegionChangeComplete={this.onRegionChangeComplete}
                 />
+
+                <View style={styles.inputContainer}>
+                    <Input 
+                            placeholder='What job you looking for?'
+                            errorStyle={{ color: 'red' }}
+                            leftIcon={ <Icon
+                                name='user'
+                                size={24}
+                                color='blue'
+                                    /> }
+                    />
+                </View>
                 <View style={styles.buttonContainer}>
                     <Button 
-                        larg
+                        large
                         title="Search this Area"
                         backgroundColor="#009688"
                         icon={{name: 'search'}}
@@ -93,10 +102,16 @@ class MapScreen extends Component {
 
 const styles = {
     buttonContainer: {
-        positions: 'absolute',
+        position: 'absolute',
         bottom:20,
         left: 0,
-        tight:0
+        right:0
+    },
+    inputContainer: {
+        position: 'absolute',
+        top:60,
+        left: 0,
+        right:0
     }
 }
 

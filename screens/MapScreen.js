@@ -4,6 +4,7 @@ import { MapView } from 'expo';
 import { connect} from 'react-redux';
 import { Button, Input  } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import KeyboardShift from '../components/KeyboardShift';
 import { Location } from 'expo';
 
 import * as actions from '../actions';
@@ -39,7 +40,8 @@ class MapScreen extends Component {
     }
 
     onButtonPress = () => {
-        this.props.fetchJobs(this.state.region);
+       // this.props.fetchJobs(this.state.region);
+        this.props.fetchGitHubJobs(this.state.region);
     }
 
    /*  _getLocationAsync = async () => {
@@ -63,6 +65,9 @@ class MapScreen extends Component {
 
         }
         return(
+              /* ref: https://codeburst.io/react-native-keyboard-covering-inputs-72a9d3072689 */
+                <KeyboardShift>
+                {() => ( 
             <View style={{ flex: 1 }}>
                                
                 
@@ -84,17 +89,20 @@ class MapScreen extends Component {
                                     /> }
                     />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <Button 
-                        large
-                        title="Search this Area"
-                        backgroundColor="#009688"
-                        icon={{name: 'search'}}
-                        onPress={this.onButtonPress} // if older syntax function like runder() we should use .bind(this)
-                    />
-                </View>
-            
+                
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            large
+                            title="Search this Area"
+                            backgroundColor="#009688"
+                            icon={{name: 'search'}}
+                            onPress={this.onButtonPress} // if older syntax function like runder() we should use .bind(this)
+                        />
+                    </View>
+                   
             </View>
+              )}
+            </KeyboardShift>  
         );
     }
  

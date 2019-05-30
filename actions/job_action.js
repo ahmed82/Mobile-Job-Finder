@@ -8,9 +8,10 @@ import {
 } from './types';
 
 
-const JOP_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
+const INDEED_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
+const GITHUB_URL = 'https://jobs.github.com/positions.json?';
 
-const JOB_QUERY_PARAMS = {
+const indeed_JOB_QUERY_PARAMS = {
     publisher: '4201738803816157',
     format: 'json',
     v: '2',
@@ -20,10 +21,16 @@ const JOB_QUERY_PARAMS = {
 
 };
 
-const buildJobsUrl = (zip) => {
-    const query = qs.stringify({ ...JOB_QUERY_PARAMS, l: zip });
+const build_Indeed_JobsUrl = (zip) => {
+    const query = qs.stringify({ ...indeed_JOB_QUERY_PARAMS, l: zip });
     console.log(query);
-    return `${JOP_ROOT_URL}${query}`;
+    return `${INDEED_ROOT_URL}${query}`;
+}
+
+const buildGitHubUrl = ( latitude, longitude ) => {
+    const query =  qs.stringify({  lat: latitude , long: longitude , description: 'java' , });
+        console.log(query);
+        return `${GITHUB_URL}${query}`;
 }
 
 /* export const fetchJobs = (region) => {
@@ -34,28 +41,24 @@ const buildJobsUrl = (zip) => {
         .catch(err => err);
     } */
 // OR use 
-/*  export const fetchJobs = (region) => async (dispatch) => {
+   export const fetchJobs = (region) => async (dispatch) => {
    const [latitude,longitude] = region;
-    console.log(  JSON.stringify(region, null, 2));
     try {
         let zip = await reverseGeocode(region);
-        console.log(zip);
-        const url = buildJobsUrl(zip);
-        console.log(url)
+        const url = build_Indeed_JobsUrl(zip);
         let { data } = await axios.get(url)
         dispatch({ type: FETCH_JOBS, payload: data })
-        ///console.log(data);
     } catch (e) {
         console.error(e);
     } 
-}*/
-export const fetchJobs = (region) => async (dispatch) => {
-    
+} 
+
+export const fetchGitHubJobs = (region) => async (dispatch) => {
     try {
         let cityinfo = await cities.gps_lookup(region.latitude,region.longitude);
-        const url = buildJobsUrl(cityinfo);
+        const url = buildGitHubUrl(region.latitude,region.longitude);
         console.log('--------------------- ',url)
-        let { data } = await axios.get(url)
+         let   data   = await axios.get(url)
         if (data ){
             dispatch({ type: FETCH_JOBS, payload: data })
             console.log(data);

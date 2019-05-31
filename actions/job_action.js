@@ -9,7 +9,7 @@ import {
 
 
 const INDEED_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
-const GITHUB_URL = 'https://jobs.github.com/positions.json?';
+const GITHUB_URL = 'https://jobs.github.com/positions.json?utf8=✓';
 
 const indeed_JOB_QUERY_PARAMS = {
     publisher: '4201738803816157',
@@ -27,8 +27,8 @@ const build_Indeed_JobsUrl = (zip) => {
     return `${INDEED_ROOT_URL}${query}`;
 }
 
-const buildGitHubUrl = ( latitude, longitude ) => {
-    const query =  qs.stringify({  lat: latitude , long: longitude , description: 'java' , });
+const buildGitHubUrl = ( cityinfo ) => {
+    const query =  qs.stringify({  location: `${cityinfo.city}+${cityinfo.state_abbr}` , description: 'java' , });
         console.log(query);
         return `${GITHUB_URL}${query}`;
 }
@@ -56,9 +56,10 @@ const buildGitHubUrl = ( latitude, longitude ) => {
 export const fetchGitHubJobs = (region) => async (dispatch) => {
     try {
         let cityinfo = await cities.gps_lookup(region.latitude,region.longitude);
-        const url = buildGitHubUrl(region.latitude,region.longitude);
+        console.log(cityinfo);
+        const url = buildGitHubUrl(cityinfo);
         console.log('--------------------- ',url)
-         let   data   = await axios.get(url)
+         let { data } = await axios.get(url)
         if (data ){
             dispatch({ type: FETCH_JOBS, payload: data })
             console.log(data);

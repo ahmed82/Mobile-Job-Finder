@@ -58,11 +58,11 @@ export const fetchGitHubJobs = (region) => async (dispatch) => {
         let cityinfo = await cities.gps_lookup(region.latitude,region.longitude);
         console.log(cityinfo);
         const url = buildGitHubUrl(cityinfo);
-        console.log('--------------------- ',url)
+        
          let { data } = await axios.get(url)
         if (data ){
             dispatch({ type: FETCH_JOBS, payload: data })
-            console.log(data);
+          
         }
         
        // console.log(JSON.stringify(cityinfo, null, 2) );

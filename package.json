@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "cities": "^2.0.0",
-    "expo": "^32.0.0",
+    "expo": "^46.0.15",
     "latlng-to-zip": "0.0.2",
     "loadash": "^1.0.0",
     "qs": "^6.7.0",
